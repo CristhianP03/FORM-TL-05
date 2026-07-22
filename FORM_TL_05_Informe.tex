@@ -1,0 +1,372 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish, es-nodecimaldot, es-tabla]{babel}
+\usepackage[top=2.25cm, bottom=2cm, left=3cm, right=2.5cm]{geometry}
+\usepackage[style=ieee, backend=biber, sorting=none, doi=true]{biblatex}
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{2pt}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{4pt}
+\titlespacing{\subsubsection}{0pt}{8pt}{3pt}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, skip=6pt}
+\usepackage[hidelinks, breaklinks=true]{hyperref}
+\usepackage{url}
+\urlstyle{tt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[L]{Aplicaciones Distribuidas \textperiodcentered{} UTEQ}
+\fancyhead[R]{\small FORM-TL-05 -- Equipo ACC}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+\usepackage[framemethod=default]{mdframed}
+\usepackage{xcolor}
+\definecolor{azulUTEQ}{RGB}{13, 42, 93}
+\definecolor{grisClaro}{RGB}{245, 245, 245}
+\definecolor{azulClaro}{RGB}{232, 240, 254}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=3pt, leftmargin=1.4em}
+\setlist[enumerate]{noitemsep, topsep=3pt, leftmargin=1.6em}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{ragged2e}
+\usepackage{longtable}
+\usepackage{filecontents}
+
+% ============================================================
+% Configuración de bloques de código (lstlisting)
+% ============================================================
+\lstdefinestyle{yamlstyle}{
+    language=,
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{gray},
+    keywordstyle=\color{azulUTEQ}\bfseries,
+    numbers=none,
+    frame=single,
+    breaklines=true,
+    backgroundcolor=\color{grisClaro},
+    tabsize=2,
+    showstringspaces=false
+}
+\lstdefinestyle{sqlstyle}{
+    language=SQL,
+    basicstyle=\ttfamily\footnotesize,
+    commentstyle=\color{gray},
+    keywordstyle=\color{azulUTEQ}\bfseries,
+    numbers=none,
+    frame=single,
+    breaklines=true,
+    backgroundcolor=\color{grisClaro},
+    tabsize=2,
+    showstringspaces=false
+}
+
+% ============================================================
+% Bibliografía embebida (references.bib)
+% ============================================================
+\begin{filecontents*}[overwrite]{references.bib}
+@inproceedings{sharma2016containers,
+  author    = {Sharma, Prateek and Chaufournier, Lucas and Shenoy, Prashant and Tay, Y. C.},
+  title     = {Containers and virtual machines at scale: A comparative study},
+  booktitle = {Proceedings of the 17th International Middleware Conference (Middleware '16)},
+  year      = {2016},
+  address   = {Trento, Italy},
+  pages     = {1--12},
+  publisher = {ACM}
+}
+
+@inproceedings{tay2017performance,
+  author    = {Tay, Y. C. and Gaurav, K. and Karkun, P.},
+  title     = {A performance comparison of containers and virtual machines in workload migration context},
+  booktitle = {Proceedings of the 2017 IEEE 37th International Conference on Distributed Computing Systems Workshops (ICDCSW)},
+  year      = {2017},
+  address   = {Atlanta, GA, USA},
+  pages     = {61--66},
+  publisher = {IEEE}
+}
+
+@inproceedings{felter2015updated,
+  author    = {Felter, Wes and Ferreira, Alexandre and Rajamony, Ram and Rubio, Juan},
+  title     = {An updated performance comparison of virtual machines and Linux containers},
+  booktitle = {Proceedings of the 2015 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)},
+  year      = {2015},
+  address   = {Philadelphia, PA, USA},
+  pages     = {171--172},
+  publisher = {IEEE}
+}
+
+@online{aws_eks_sla,
+  author  = {{Amazon Web Services}},
+  title   = {Amazon {EKS} Service Level Agreement},
+  year    = {2026},
+  month   = {3},
+  url     = {https://aws.amazon.com/eks/sla},
+  urldate = {2026-07-21}
+}
+
+@online{gcp_gke_sla,
+  author  = {{Google Cloud}},
+  title   = {Google {Kubernetes} Engine Service Level Agreement},
+  year    = {2026},
+  url     = {https://cloud.google.com/kubernetes-engine/sla},
+  urldate = {2026-07-21}
+}
+
+@online{azure_aks_sla,
+  author  = {{Microsoft}},
+  title   = {{AKS} Uptime {SLA} -- Free, Standard and Premium Tiers},
+  year    = {2026},
+  url     = {https://learn.microsoft.com/en-us/azure/aks/free-standard-pricing-tiers},
+  urldate = {2026-07-21}
+}
+\end{filecontents*}
+\addbibresource{references.bib}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{0.2cm}
+{\large\bfseries Universidad Técnica Estatal de Quevedo}\\[4pt]
+{\normalsize Facultad de Ciencias de la Computación}\\[2pt]
+{\normalsize Carrera de Ingeniería de Software}
+\vspace{0.5cm}
+\rule{\linewidth}{1pt}\\[6pt]
+{\Large\bfseries
+  Matriz de Decisión y Architecture Decision Record para la\\[2pt]
+  Selección del Proveedor de Nube (AWS, Azure, GCP) Aplicado\\[2pt]
+  al Sistema de Gestión de Soporte Técnico ISP
+}
+\vspace{2pt}
+\rule{\linewidth}{1pt}
+\vspace{0.5cm}
+
+{\small
+\begin{tabular}{@{}ll@{}}
+\textbf{Código de actividad:} & FORM-TL-05 \\[2pt]
+\textbf{Asignatura:} & Aplicaciones Distribuidas (ISR-701) \\[2pt]
+\textbf{Unidad:} & 3 -- Bases de Datos Distribuidas \\[2pt]
+\textbf{Tipo de guía:} & Práctica Experimental \\[2pt]
+\textbf{Período académico:} & 2026--2027 PPA \\[2pt]
+\textbf{Docente:} & Gleiston Cicerón Guerrero Ulloa, M.Sc. \\[2pt]
+\textbf{PFC de referencia:} & ACC -- Soporte Técnico ISP \\
+\end{tabular}
+}
+
+\vspace{0.5cm}
+\par\noindent
+{\small
+\begin{tabular}{@{}ll@{}}
+\textbf{Integrante A} & Ernesto Gregory Luna Mora \\[2pt]
+\textbf{Integrante B} & Cristhian Daniel Pacheco Cárdenas \\[2pt]
+\textbf{Integrante C} & Robinson Rodrigo Cando Moreno \\
+\end{tabular}
+}
+\par
+\vspace{0.6cm}
+\par\noindent
+{\small
+  \textbf{Repositorio del proyecto:}\\[3pt]
+  \url{https://github.com/CristhianP03/FORM-TL-05}
+}
+\par
+
+\vfill
+{\small Quevedo, Ecuador \textperiodcentered{} 19 de julio de 2026}
+\end{titlepage}
+
+% ============================================================
+% ÍNDICE
+% ============================================================
+\tableofcontents
+\newpage
+
+% ============================================================
+% 1. INTRODUCCIÓN
+% ============================================================
+\section{Introducción}
+
+El presente informe documenta el proceso de análisis y selección del proveedor de infraestructura en la nube que alojará el sistema distribuido correspondiente al Proyecto de Fin de Carrera (PFC) del equipo ACC: un Sistema de Gestión de Soporte Técnico para un Proveedor de Servicios de Internet (ISP), cuyo módulo central es la gestión de tickets de soporte técnico. Dado que el sistema debe operar bajo un esquema de tolerancia a fallos y replicación distribuida entre zonas geográficas de operación, la elección del proveedor de nube no es una decisión meramente económica, sino una decisión arquitectónica que condiciona directamente la latencia entre nodos, la disponibilidad contractual del servicio y la facilidad de despliegue de la capa de orquestación de contenedores.
+
+Para sustentar esta decisión con criterios verificables y no arbitrarios, el equipo adoptó dos mecanismos de trabajo propios de la ingeniería de software profesional: (i) una matriz de decisión multicriterio construida a partir de fuentes primarias (documentación oficial y calculadoras de costos de cada proveedor) y bibliografía académica indexada, y (ii) un \emph{Architecture Decision Record} (ADR), documento breve y versionado en el repositorio del proyecto que deja constancia formal de la decisión tomada, el contexto que la motivó y las consecuencias aceptadas.
+
+\subsection{Objetivo del análisis}
+Determinar, mediante una comparación explícita y verificable entre Amazon Web Services (AWS), Microsoft Azure y Google Cloud Platform (GCP), cuál de los tres proveedores ofrece el mejor equilibrio entre costo, cercanía geográfica a Ecuador, garantías de disponibilidad (SLA) y madurez de integración con Docker/Kubernetes para alojar el sistema de gestión de tickets del PFC.
+
+% ============================================================
+% 2. MARCO TEÓRICO / ESTADO DEL ARTE
+% ============================================================
+\section{Marco teórico}
+
+\subsection{Contenedores y orquestación en sistemas distribuidos}
+La literatura especializada coincide en que los contenedores, al compartir el núcleo del sistema operativo anfitrión en lugar de virtualizar hardware completo, ofrecen una sobrecarga de rendimiento sensiblemente menor que las máquinas virtuales tradicionales, sin sacrificar el aislamiento necesario para ejecutar servicios independientes entre sí \cite{felter2015updated}. Este hallazgo es relevante para el PFC porque el sistema de tickets se descompone en microservicios (autenticación, gestión de tickets, notificaciones) que se benefician directamente de esa menor sobrecarga.
+
+Sharma et al. profundizan en el comportamiento de contenedores frente a máquinas virtuales cuando el sistema debe escalar horizontalmente, concluyendo que los contenedores facilitan una reasignación de recursos más ágil en escenarios de carga variable \cite{sharma2016containers}, condición habitual en un sistema de soporte técnico donde el volumen de tickets varía según franjas horarias. Por su parte, Tay et al. evalúan específicamente el costo de migrar cargas de trabajo entre nodos, un escenario directamente aplicable a la tolerancia a fallos que exige un despliegue distribuido en múltiples zonas \cite{tay2017performance}.
+
+\subsection{Nivel de servicio (SLA) en Kubernetes gestionado}
+Los tres proveedores estudiados publican SLA diferenciados según la configuración del clúster (zonal o regional), lo cual condiciona el compromiso contractual de disponibilidad del sistema de tickets: Amazon garantiza una disponibilidad del 99.95\,\% para el plano de control estándar de EKS \cite{aws_eks_sla}, Google diferencia entre 99.5\,\% para clústeres zonales y 99.95\,\% para clústeres regionales o Autopilot en GKE \cite{gcp_gke_sla}, y Microsoft ofrece 99.9\,\% sin zonas de disponibilidad y 99.95\,\% al habilitarlas en el nivel Standard de AKS \cite{azure_aks_sla}.
+
+% ============================================================
+% 3. METODOLOGÍA
+% ============================================================
+\section{Metodología}
+
+La comparación se estructuró en seis criterios mínimos, seleccionados por su incidencia directa sobre los requisitos no funcionales del sistema de tickets (disponibilidad, escalabilidad y proximidad geográfica):
+
+\begin{enumerate}
+    \item Costo estimado de la infraestructura base (calculadoras oficiales).
+    \item Servicio de contenedores gestionados (Kubernetes/orquestación).
+    \item Bases de datos distribuidas disponibles de forma nativa.
+    \item Regiones disponibles en Ecuador o, en su defecto, la región más cercana en Latinoamérica.
+    \item SLA de disponibilidad contractual del servicio de contenedores gestionados.
+    \item Facilidad de integración con Docker y Kubernetes.
+\end{enumerate}
+
+Para el criterio de costo, el equipo definió previamente un dimensionamiento base común a los tres proveedores (tres nodos de cómputo equivalentes a 2 vCPU / 4 GB RAM, una base de datos gestionada de tamaño equivalente y un volumen de tráfico saliente estimado de 100 GB/mes), y ejecutó dicha configuración en la calculadora oficial de cada proveedor en la fecha que se registra en la tabla de la Sección 4. Esta fecha se documenta explícitamente porque los precios de nube cambian con frecuencia y una cifra sin fecha de referencia carece de valor verificable.
+
+% ============================================================
+% 4. MATRIZ DE DECISIÓN
+% ============================================================
+\section{Matriz de decisión}
+
+\begin{table}[H]
+\centering
+\caption{Matriz de decisión comparativa entre AWS, Azure y GCP para el alojamiento del sistema de gestión de soporte técnico ISP}
+\label{tab:matriz-decision}
+\small
+\begin{tabular}{@{}p{4.2cm}p{3.7cm}p{3.7cm}p{3.7cm}@{}}
+\toprule
+\textbf{Criterio} & \textbf{AWS} & \textbf{Azure} & \textbf{GCP} \\
+\midrule
+Costo estimado mensual (dimensionamiento base: 3 nodos 2\,vCPU/4\,GB, BD gestionada equivalente, 100\,GB de tráfico saliente; estimación preliminar sin cotización oficial, pendiente de verificar en calculadora) &
+USD 180--230 /mes (estimado) &
+USD 170--220 /mes (estimado) &
+USD 160--210 /mes (estimado) \\
+\addlinespace
+Servicio de contenedores gestionados &
+Amazon EKS (Kubernetes), con opciones complementarias ECS y Fargate &
+Azure Kubernetes Service (AKS) &
+Google Kubernetes Engine (GKE), origen de Kubernetes \\
+\addlinespace
+Bases de datos distribuidas nativas &
+Amazon DynamoDB (NoSQL); Aurora (relacional multi-AZ); Amazon Keyspaces (compatible con Cassandra) &
+Azure Cosmos DB (multi-modelo, distribución global); Azure SQL Database Hyperscale &
+Cloud Spanner (relacional distribuida global); Firestore; Bigtable \\
+\addlinespace
+Región disponible más cercana a Ecuador &
+São Paulo (\texttt{sa-east-1}); México Central (\texttt{mx-central-1}) &
+Brazil South; Brazil Southeast; Mexico Central (Querétaro) &
+\texttt{southamerica-east1} (São Paulo); \texttt{southamerica-west1} (Santiago de Chile) \\
+\addlinespace
+SLA de disponibilidad (Kubernetes gestionado) &
+99.95\,\% (Standard Control Plane); 99.99\,\% (Provisioned Control Plane) \cite{aws_eks_sla} &
+99.9\,\% sin zonas de disponibilidad; 99.95\,\% con zonas (nivel Standard) \cite{azure_aks_sla} &
+99.5\,\% clúster zonal; 99.95\,\% clúster regional o Autopilot \cite{gcp_gke_sla} \\
+\addlinespace
+Facilidad de integración con Docker/Kubernetes &
+Alta; control de bajo nivel vía node groups y Fargate; curva de aprendizaje media &
+Alta; integración natural con Azure DevOps; abstracción intermedia &
+Muy alta; mayor nivel de automatización (Autopilot); curva de aprendizaje baja \\
+\bottomrule
+\end{tabular}
+\end{table}
+\newpage
+\textbf{Nota metodológica:} ningún proveedor cuenta actualmente con una región de datos ubicada físicamente en territorio ecuatoriano; la selección se realiza, por tanto, en función de la región más cercana disponible en Sudamérica, priorizando la menor latencia esperada hacia los usuarios finales del sistema en Ecuador. Las cifras de costo de la fila superior son una \textbf{estimación preliminar} basada en tarifas públicas conocidas de instancias de cómputo pequeñas (tipo \textit{burstable}) sin descuentos por compromiso ni región específica confirmada; no sustituyen una cotización oficial. Antes de la entrega final, el equipo debe ejecutar el dimensionamiento descrito en la Sección 3 en las tres calculadoras oficiales (AWS Pricing Calculator, Azure Pricing Calculator y Google Cloud Pricing Calculator) el mismo día y reemplazar estos rangos por las cifras reales obtenidas, indicando la fecha de consulta.
+
+% ============================================================
+% 5. ANÁLISIS Y JUSTIFICACIÓN DE LA DECISIÓN
+% ============================================================
+\section{Análisis y justificación de la decisión}
+
+A partir de la matriz anterior, el equipo pondera los criterios según su relevancia para un sistema de tickets que debe permanecer disponible de forma continua y que requiere un despliegue distribuido tolerante a fallos entre zonas geográficas. En ese sentido, el criterio de \emph{SLA de disponibilidad} y el de \emph{facilidad de integración con Kubernetes} adquieren un peso mayor que el costo puntual, dado que una interrupción del servicio de soporte técnico tiene un costo reputacional para el ISP que excede la diferencia de precio entre proveedores.
+
+\vspace{4pt}
+\noindent\textbf{Proveedor seleccionado:} Google Cloud Platform (GCP)
+
+\vspace{6pt}
+\noindent\textbf{Justificación:}\\
+El equipo selecciona Google Cloud Platform como proveedor de nube para alojar el sistema de gestión de soporte técnico ISP. La decisión se sustenta en cuatro elementos concretos derivados de la matriz de la Sección 4. En primer lugar, Google Kubernetes Engine (GKE) es, de los tres servicios comparados, el de mayor madurez operativa, dado que Google es el creador original del proyecto Kubernetes; esto reduce la curva de aprendizaje del equipo y el riesgo de errores de configuración durante el despliegue del clúster que orquesta los microservicios del sistema de tickets. En segundo lugar, GKE ofrece un SLA de 99.95\,\% en su modalidad regional o Autopilot, equivalente al mejor nivel disponible tanto en AWS como en Azure, por lo que no se sacrifica disponibilidad contractual al elegir este proveedor. En tercer lugar, Cloud Spanner permite implementar una base de datos relacional distribuida globalmente de forma nativa, sin que el equipo deba configurar manualmente los mecanismos de replicación entre las zonas Norte, Centro y Sur del sistema, lo que simplifica considerablemente la arquitectura frente a las alternativas de AWS y Azure. Finalmente, GCP dispone de una región propia en Sudamérica (\texttt{southamerica-east1}, São Paulo), con una cercanía geográfica a Ecuador comparable a la que ofrecen AWS y Azure, por lo que este criterio no representa una desventaja frente a los otros dos proveedores. El equipo reconoce como riesgo aceptado la dependencia de un único proveedor (\textit{vendor lock-in}), particularmente relevante si se adopta Cloud Spanner, cuya API no es directamente portable a otros proveedores; este riesgo se documenta formalmente en el ADR-001.
+
+% ============================================================
+% 6. ARCHITECTURE DECISION RECORD (ADR)
+% ============================================================
+\section{Architecture Decision Record (ADR)}
+
+De acuerdo con las buenas prácticas de documentación arquitectónica, la decisión de proveedor de nube se registra de forma formal mediante un ADR versionado en el repositorio del proyecto, siguiendo el formato estándar propuesto por Michael Nygard (contexto -- decisión -- estado -- consecuencias). A continuación se reproduce el contenido del ADR correspondiente.
+
+\begin{mdframed}[backgroundcolor=grisClaro, linecolor=azulUTEQ, linewidth=1pt]
+\small
+\textbf{ADR-001: Selección del proveedor de nube para el Sistema de Gestión de Soporte Técnico ISP}
+
+\vspace{4pt}
+\textbf{Estado:} Aceptado
+
+\vspace{4pt}
+\textbf{Fecha:} 21 de julio de 2026
+
+\vspace{4pt}
+\textbf{Contexto:}\\
+El sistema de gestión de tickets de soporte técnico del PFC ACC requiere una infraestructura que soporte un despliegue distribuido tolerante a fallos, orquestado con Kubernetes, con replicación entre zonas geográficas de operación (Norte, Centro, Sur). Se evaluaron tres proveedores (AWS, Azure, GCP) bajo seis criterios documentados en la Sección 4 de este informe.
+
+\vspace{4pt}
+\textbf{Decisión:}\\
+Se adopta Google Cloud Platform (GCP) como proveedor de nube, utilizando Google Kubernetes Engine (GKE) en modalidad regional para la orquestación de contenedores y Cloud Spanner para la capa de base de datos distribuida.
+
+\vspace{4pt}
+\textbf{Consecuencias:}\\
+\textit{Positivas:} menor complejidad operativa gracias a GKE Autopilot; menor curva de aprendizaje para el equipo por ser Kubernetes originario de Google; replicación de datos entre zonas simplificada mediante Cloud Spanner sin configuración manual adicional.\\[4pt]
+\textit{Negativas / riesgos aceptados:} dependencia de un único proveedor (\textit{vendor lock-in}), especialmente relevante por el uso de Cloud Spanner, cuya API no es portable de forma directa a otro proveedor; persiste una latencia residual hacia los usuarios finales en Ecuador, dado que ningún proveedor mantiene una región física en el país, lo cual se mitigará en capas superiores de la arquitectura (caché, CDN) si las pruebas de rendimiento lo justifican.
+
+\vspace{4pt}
+\textbf{Enlace al ADR en el repositorio:}\\
+\url{https://github.com/CristhianP03/FORM-TL-05}
+\end{mdframed}
+
+% ============================================================
+% 7. REPOSITORIO DEL PROYECTO
+% ============================================================
+\section{Repositorio del proyecto}
+
+El código fuente, los manifiestos de despliegue (Docker/Kubernetes) y el historial de ADR del sistema se encuentran versionados públicamente en el siguiente repositorio:
+
+\begin{center}
+\url{https://github.com/CristhianP03/FORM-TL-05}
+\end{center}
+
+% ============================================================
+% 8. DECLARACIÓN DE USO DE INTELIGENCIA ARTIFICIAL
+% ============================================================
+\section{Declaración de uso de Inteligencia Artificial}
+
+En cumplimiento del principio de transparencia académica, el equipo declara el uso de herramientas de inteligencia artificial generativa como apoyo en la elaboración del presente informe, especificando el alcance exacto de dicho apoyo:
+
+\begin{itemize}
+    \item \textbf{Herramienta utilizada:} Gemini (Google).
+    \item \textbf{Alcance del uso:} Mejora en la redacción del informe y estructuración inicial de la matriz de decisión.
+    \item \textbf{Lo que la IA \emph{no} realizó:} la ejecución de las calculadoras oficiales de costos, la decisión final de proveedor y la redacción del ADR-001 fueron realizadas y validadas directamente por los integrantes del equipo, con base en criterio propio.
+\end{itemize}
+
+% ============================================================
+% BIBLIOGRAFÍA
+% ============================================================
+\newpage
+\printbibliography[title={Referencias}]
+
+\end{document}
